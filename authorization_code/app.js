@@ -131,15 +131,15 @@ app.get('/spotify-login', function (req, res) {
 					// 	console.log(body);
 					// 	res.send({ token: access_token, body: body });
 					// });
-					res.send({ token: access_token, refresh_token: refresh_token });
+					// res.send({ token: access_token, refresh_token: refresh_token });
 					// we can also pass the token to the browser to make requests from there
-					// res.redirect(
-					// 	'/#' +
-					// 		querystring.stringify({
-					// 			access_token: access_token,
-					// 			refresh_token: refresh_token,
-					// 		}),
-					// );
+					res.redirect(
+						'/' +
+							querystring.stringify({
+								access_token: access_token,
+								refresh_token: refresh_token,
+							}),
+					);
 				} else {
 					res.redirect(
 						'/#' +
