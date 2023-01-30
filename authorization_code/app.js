@@ -110,18 +110,18 @@ app.get('/spotify-login', function (req, res) {
 				var access_token = body.access_token,
 					refresh_token = body.refresh_token;
 
-				var options = {
-					url: 'https://api.spotify.com/v1/me',
-					headers: { Authorization: 'Bearer ' + access_token },
-					json: true,
-				};
+				// var options = {
+				// 	url: 'https://api.spotify.com/v1/me',
+				// 	headers: { Authorization: 'Bearer ' + access_token },
+				// 	json: true,
+				// };
 
-				//use the access token to access the Spotify Web API
-				request.get(options, function (error, response, body) {
-					console.log(body);
-					res.send({ token: access_token, body: body });
-				});
-				res.send({ token: access_token });
+				// //use the access token to access the Spotify Web API
+				// request.get(options, function (error, response, body) {
+				// 	console.log(body);
+				// 	res.send({ token: access_token, body: body });
+				// });
+				res.send({ token: access_token ,refresh_token:refresh_token});
 				// we can also pass the token to the browser to make requests from there
 				// res.redirect(
 				// 	'/#' +
