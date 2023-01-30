@@ -99,7 +99,7 @@ app.get('/spotify-login', function (req, res) {
 			url: 'https://accounts.spotify.com/api/token',
 			form: {
 				code: code,
-				redirect_uri: redirect_uri,
+				// redirect_uri: redirect_uri,
 				grant_type: 'authorization_code',
 			},
 			headers: {
@@ -133,17 +133,10 @@ app.get('/spotify-login', function (req, res) {
 					// });
 					// res.send({ token: access_token, refresh_token: refresh_token });
 					// we can also pass the token to the browser to make requests from there
-					res.redirect(
-						'/login'
-					);
+					
 					res.send({access_token:access_token,refresh_token:refresh_token})
 				} else {
-					res.redirect(
-						'/#' +
-							querystring.stringify({
-								error: 'invalid_token',
-							}),
-					);
+					res.send(error)
 				}
 			},
 		);
