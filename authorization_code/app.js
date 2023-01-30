@@ -41,7 +41,7 @@ var app = express();
 app.use(cors()).use(cookieParser());
 
 app.get('/', (req, res) => {
-	res.send('Hello');
+	res.send({data:'hello'});
 });
 
 app.get('/login', function (req, res) {
@@ -109,7 +109,7 @@ app.get('/spotify-login', function (req, res) {
 				// request.get(options, function (error, response, body) {
 				// 	console.log(body);
 				// });
-				res.send(access_token);
+				res.send({token:access_token});
 				// we can also pass the token to the browser to make requests from there
 				// res.redirect(
 				// 	'/#' +
