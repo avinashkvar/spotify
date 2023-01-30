@@ -60,7 +60,6 @@ app.get('/login', function (req, res) {
 				state: state,
 			}),
 	);
-	res.send('hello');
 });
 
 app.get('/spotify-login', function (req, res) {
@@ -107,9 +106,9 @@ app.get('/spotify-login', function (req, res) {
 				};
 
 				// use the access token to access the Spotify Web API
-				request.get(options, function (error, response, body) {
-					console.log(body);
-				});
+				// request.get(options, function (error, response, body) {
+				// 	console.log(body);
+				// });
 				res.send(access_token);
 				// we can also pass the token to the browser to make requests from there
 				// res.redirect(
