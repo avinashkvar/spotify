@@ -37,8 +37,12 @@ var generateRandomString = function (length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
-
-app.use(cors()).use(cookieParser());
+const corsOptions = {
+	origin: '*',
+	credentials: true, 
+	optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions)).use(cookieParser());
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
