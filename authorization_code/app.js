@@ -134,7 +134,7 @@ app.get('/spotify-login', function (req, res) {
 					// res.send({ token: access_token, refresh_token: refresh_token });
 					// we can also pass the token to the browser to make requests from there
 					res.redirect(
-						'/?' +
+						'/login/?' +
 							querystring.stringify({
 								access_token: access_token,
 								refresh_token: refresh_token,
