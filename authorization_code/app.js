@@ -44,7 +44,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions)).use(cookieParser());
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader(
+		'Access-Control-Allow-Origin',
+		'http://192.168.29.191:5501/cleint/index.html',
+	);
 	res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
 	res.setHeader(
 		'Access-Control-Allow-Methods',
@@ -104,7 +107,8 @@ app.get('/spotify-login', function (req, res) {
 					'Basic ' +
 					new Buffer(client_id + ':' + client_secret).toString('base64'),
 
-				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Origin':
+					'http://192.168.29.191:5501/cleint/index.html',
 			},
 			json: true,
 		};
@@ -144,11 +148,6 @@ app.get('/spotify-login', function (req, res) {
 							}),
 					);
 				}
-			},
-			{
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-				},
 			},
 		);
 	}
