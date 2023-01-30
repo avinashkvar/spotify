@@ -41,7 +41,7 @@ var app = express();
 app.use(cors()).use(cookieParser());
 
 app.get('/', (req, res) => {
-	res.send({data:'hello'});
+	res.send({ data: 'hello' });
 });
 
 app.get('/login', function (req, res) {
@@ -90,6 +90,8 @@ app.get('/spotify-login', function (req, res) {
 				Authorization:
 					'Basic ' +
 					new Buffer(client_id + ':' + client_secret).toString('base64'),
+
+				'Access-Control-Allow-Origin': '*',
 			},
 			json: true,
 		};
@@ -108,9 +110,9 @@ app.get('/spotify-login', function (req, res) {
 				//use the access token to access the Spotify Web API
 				request.get(options, function (error, response, body) {
 					console.log(body);
-          res.send({token:access_token,body:body})
+					res.send({ token: access_token, body: body });
 				});
-				res.send({token:access_token});
+				res.send({ token: access_token });
 				// we can also pass the token to the browser to make requests from there
 				// res.redirect(
 				// 	'/#' +
