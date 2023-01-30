@@ -41,10 +41,12 @@ app
    .use(cors())
    .use(cookieParser());
 
-
+app.get('/',(req,res)=>{
+   res.send('Hello')
+})
 
 app.get(
-	'https://spotify-avinashkvar.vercel.app/login',
+	'/login',
 	function (req, res) {
 		var state = generateRandomString(16);
 		res.cookie(stateKey, state);
@@ -67,7 +69,7 @@ app.get(
 
 
 app.get(
-	'https://spotify-avinashkvar.vercel.app/spotify-login',
+	'/spotify-login',
 	function (req, res) {
 		// your application requests refresh and access tokens
 		// after checking the state parameter
