@@ -99,7 +99,7 @@ app.get('/spotify-login', function (req, res) {
 			url: 'https://accounts.spotify.com/api/token',
 			form: {
 				code: code,
-				// redirect_uri: redirect_uri,
+			    redirect_uri: redirect_uri,
 				grant_type: 'authorization_code',
 			},
 			headers: {
