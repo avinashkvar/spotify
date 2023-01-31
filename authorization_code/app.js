@@ -78,7 +78,7 @@ app.get('/login', function (req, res) {
 	);
 });
 
-app.get('https://spotify-frontend-mu.vercel.app/', function (req, res) {
+app.get('/spotify-login', function (req, res) {
 	// your application requests refresh and access tokens
 	// after checking the state parameter
 
@@ -99,7 +99,7 @@ app.get('https://spotify-frontend-mu.vercel.app/', function (req, res) {
 			url: 'https://accounts.spotify.com/api/token',
 			form: {
 				code: code,
-				redirect_uri: redirect_uri,
+			    redirect_uri: redirect_uri,
 				grant_type: 'authorization_code',
 			},
 			headers: {
@@ -107,38 +107,39 @@ app.get('https://spotify-frontend-mu.vercel.app/', function (req, res) {
 					'Basic ' +
 					new Buffer(client_id + ':' + client_secret).toString('base64'),
 
-				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Origin':
+					'*',
 			},
 			json: true,
 		};
 
-		request.post(authOptions, function (error, response, body) {
-			if (!error && response.statusCode === 200) {
-				var access_token = body.access_token,
-					refresh_token = body.refresh_token;
+		request.post(
+			authOptions,
+			function (error, response, body) {
+				if (!error && response.statusCode === 200) {
+					var access_token = body.access_token,
+						refresh_token = body.refresh_token;
 
-				// var options = {
-				// 	url: 'https://api.spotify.com/v1/me',
-				// 	headers: { Authorization: 'Bearer ' + access_token },
-				// 	json: true,
-				// };
+					// var options = {
+					// 	url: 'https://api.spotify.com/v1/me',
+					// 	headers: { Authorization: 'Bearer ' + access_token },
+					// 	json: true,
+					// };
 
-				// //use the access token to access the Spotify Web API
-				// request.get(options, function (error, response, body) {
-				// 	console.log(body);
-				// 	res.send({ token: access_token, body: body });
-				// });
-				// res.send({ token: access_token, refresh_token: refresh_token });
-				// we can also pass the token to the browser to make requests from there
-
-				res.send({
-					access_token: access_token,
-					refresh_token: refresh_token,
-				});
-			} else {
-				res.send(error);
-			}
-		});
+					// //use the access token to access the Spotify Web API
+					// request.get(options, function (error, response, body) {
+					// 	console.log(body);
+					// 	res.send({ token: access_token, body: body });
+					// });
+					// res.send({ token: access_token, refresh_token: refresh_token });
+					// we can also pass the token to the browser to make requests from there
+					
+					res.send({access_token:access_token,refresh_token:refresh_token})
+				} else {
+					res.send(error)
+				}
+			},
+		);
 	}
 });
 
